@@ -11,7 +11,8 @@ SilverStripe 3 GridField based management of has_one , has_many , and many_many 
 ## Why?
 
 1. Because we needed a consistent interface to manage relationship selections in an efficient* manner.
-2. GridField doesn't appear to natively support has_one relationships. 
+2. GridField doesn't appear to natively support has_one relationships.
+3. Because AndrewShort's ItemSetFields don't work in SilverStripe 3
 
 Thanks to the great work of the SilverStripe team and Andrew Short's GridFieldExtensions, this was relatively easy 
 to implement. Please buy them beers or tea.
