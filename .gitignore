@@ -1,0 +1,9 @@
+#### Eclipse IDE
+/.project
+/.pydevproject
+/.classpath
+/.buildpath
+/.settings/
+
+#### General
+.DS_Store
