@@ -1,7 +1,9 @@
 silverstripe-pickerfield
 ========================
 
-SilverStripe 3 GridField based management of has_one , has_many , and many_many relationship selection
+SilverStripe 3 GridField based management of has_one , has_many , and many_many relationship selection.
+
+Supports search filtration; aka limiting the available selections. 
 
 
 ## Requirements
@@ -36,24 +38,24 @@ Screenshots;
 
 class Dog extends DataObject {
 	static $db = array(
-		'Title'				=> 'Varchar',
+		'Title'      => 'Varchar',
+		'Gender'     => 'Enum("male,female")',
 		// ....
 	);
 	
 	static $has_one = array(
-		'Breeder'			=> 'Breeder'
-		'Dam'				=> 'Dog',
-		'Sire'				=> 'Dog',
+		'Breeder'    => 'Breeder'
+		'Dam'        => 'Dog',
+		'Sire'       => 'Dog',
 		// ....
 	);
 	
 	static $has_many = array(
-		'Owners'	=> 'Member',
+		'Owners'     => 'Member',
 		// ....
 	);
 	
 // ....
-
 }
 
 
@@ -71,6 +73,17 @@ $field = new PickerField('Owners', 'Owners', $this->Owners());
 $field = new HasOnePickerField($this, 'DamID', 'Selected Dam', $this->Dam(), 'Select a Dam');
 
 
+// example of search filtration to limit selection to a desired subset.
+///////////////////////////////////////////////////////////////////////
+$fields->addFieldsToTab('Root.Pedigree', array(
+	$sireField = new HasOnePickerField($this, 'SireID', 'Selected Sire', $this->Sire(), 'Select a Sire'),
+	$damField  = new HasOnePickerField($this, 'DamID', 'Selected Dam', $this->Dam(), 'Select a Dam'),
+	// ...
+));
+
+$damField->setSearchFilters(array('Gender' => 'female'));
+$sireField->setSearchFilters(array('Gender' => 'male'));
+///////////////////////////////////////////////////////////////////////
 
 ```
 
