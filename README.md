@@ -40,6 +40,8 @@ class Dog extends DataObject {
 	
 	static $has_one = array(
 		'Breeder'			=> 'Breeder'
+		'Dam'				=> 'Dog',
+		'Sire'				=> 'Dog',
 		// ....
 	);
 	
@@ -64,7 +66,8 @@ $field = new PickerGridField('Owners', 'Owners', $this->Owners(), 'Select Owner(
 $field = new PickerGridField('Owners', 'Owners', $this->Owners());
 
 // sortable field appropriate for the parent selection of a has_one relationship
-new HasOnePickerGridField($this, 'BreederID','Breeder', 'Breeder', 'Select a Breeder')
+$field = new HasOnePickerGridField($this, 'DamID', 'Selected Dam', $this->Dam(), 'Select a Dam');
+
 
 
 ```
