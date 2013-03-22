@@ -1,18 +1,18 @@
 <?php
 
-class HasOnePickerGridField extends PickerGridField {
-	
+class HasOnePickerField extends PickerField {
+	protected $isHaveOne = true;
 	protected $childObject;
 	
 	/**
 	 * Usage [e.g. in getCMSFields]
-	 *    $field = new HasOnePickerGridField($this, 'DamID', 'Selected Dam', $this->Dam(), 'Select a Dam');
+	 *    $field = new HasOnePickerField($this, 'DamID', 'Selected Dam', $this->Dam(), 'Select a Dam');
 	 *    
-	 * @param DataObject $childObject	- The field we are executing on
-	 * @param string $name				- Field Name of has_one relationship (e.g. DamID, SireID, etc.)
-	 * @param string $title				- GridField Title
-	 * @param SS_List $dataList			- Result of the has_one relationship method (E.g. $this->HasOneMethod())
-	 * @param string $linkExistingTitle	- GridFieldAddExistingSearchButton Title
+	 * @param DataObject $childObject   - The DataObject we are manipulating with this field
+	 * @param string $name              - Field Name of has_one relationship (e.g. DamID, SireID, etc.)
+	 * @param string $title             - GridField Title
+	 * @param SS_List $dataList         - Result of the has_one relationship method (E.g. $this->HasOneMethod())
+	 * @param string $linkExistingTitle - AddExisting Button Title
 	 */
 	
 	public function __construct(DataObject $childObject, $name, $title = null, SS_List $dataList, $linkExistingTitle = 'Select Existing', $searchContext = null) {
@@ -27,15 +27,10 @@ class HasOnePickerGridField extends PickerGridField {
 		$dataList->setDataModel($childObject);
 		
 		// construct the PickerField
-		parent::__construct($name, $title, $dataList);
+		parent::__construct($name, $title, $dataList, $linkExistingTitle);
 		
 		// remove components non-applicable to has_one relationships
 		$this->getConfig()->removeComponentsByType('GridFieldPaginator');
-		$this->getConfig()->removeComponentsByType('GridFieldAddExistingSearchButton');
-		
-		// add custom has_one handling
-		$this->getConfig()->addComponent($component = new HasOneGridFieldAddExistingSearchButton());
-		$component->setTitle($linkExistingTitle);
 	}
 	
 }

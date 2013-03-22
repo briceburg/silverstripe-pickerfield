@@ -62,13 +62,13 @@ class Dog extends DataObject {
 ************************/
 
 // sortable field appropriate for selection of has_many and many_many objects
-$field = new PickerGridField('Owners', 'Owners', $this->Owners(), 'Select Owner(s)', 'SortOrder');
+$field = new PickerField('Owners', 'Owners', $this->Owners(), 'Select Owner(s)', 'SortOrder');
 
 // non-sortable version of the above
-$field = new PickerGridField('Owners', 'Owners', $this->Owners());
+$field = new PickerField('Owners', 'Owners', $this->Owners());
 
 // sortable field appropriate for the parent selection of a has_one relationship
-$field = new HasOnePickerGridField($this, 'DamID', 'Selected Dam', $this->Dam(), 'Select a Dam');
+$field = new HasOnePickerField($this, 'DamID', 'Selected Dam', $this->Dam(), 'Select a Dam');
 
 
 
