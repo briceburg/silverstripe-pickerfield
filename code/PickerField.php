@@ -38,4 +38,28 @@ class PickerField extends GridField {
 		return $this->isHaveOne;
 	}
 	
+	public function setSearchFilters($filters) {
+		$this->config->getComponentByType('PickerFieldAddExistingSearchButton')
+			->setSearchFilters($filters);
+		
+		return $this;
+	}
+	
+	public function setSearchExcludes($excludes) {
+		$this->config->getComponentByType('PickerFieldAddExistingSearchButton')
+			->setSearchExcludes($excludes);
+		
+		return $this;
+	}
+	
+	public function getSearchFilters() {
+		return $this->config->getComponentByType('PickerFieldAddExistingSearchButton')
+			->getSearchFilters();
+	}
+	
+	public function getSearchExcludes() {
+		return $this->config->getComponentByType('PickerFieldAddExistingSearchButton')
+			->getSearchExcludes();
+	}
+	
 }
