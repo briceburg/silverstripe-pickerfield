@@ -22,8 +22,10 @@ to implement. Please buy them beers or tea.
 ## Usage Overview
 
 Screenshots;
-* overview - https://github.com/briceburg/silverstripe-pickerfield/blob/master/docs/screenshots/pickerfield.png
-* link button search [via GridFieldExtensions] - https://github.com/briceburg/silverstripe-pickerfield/blob/master/docs/screenshots/add-existing-search.png
+###overview
+![overview](https://github.com/briceburg/silverstripe-pickerfield/blob/master/docs/screenshots/pickerfield.png?raw=true)
+###link button search [via GridFieldExtensions]
+![link button search [via GridFieldExtensions]](http://github.com/briceburg/silverstripe-pickerfield/blob/master/docs/screenshots/add-existing-search.png?raw=true)
 
 
 ```php
