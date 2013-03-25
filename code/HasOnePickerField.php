@@ -15,7 +15,7 @@ class HasOnePickerField extends PickerField {
 	 * @param string $linkExistingTitle - AddExisting Button Title
 	 */
 	
-	public function __construct(DataObject $childObject, $name, $title = null, SS_List $dataList, $linkExistingTitle = 'Select Existing', $searchContext = null) {
+	public function __construct(DataObject $childObject, $name, $title = null, SS_List $dataList, $linkExistingTitle = null, $searchContext = null) {
 		$modelClass = $dataList->className;
 		$this->childObject = $childObject;
 		$this->setModelClass($modelClass);

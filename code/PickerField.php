@@ -13,7 +13,7 @@ class PickerField extends GridField {
 	 * @param string $linkExistingTitle - AddExisting Button Title
 	 * @param string $sortField         - Field to sort on. Be sure it exists in the $many_many_extraFields static
 	 */
-	public function __construct($name, $title = null, SS_List $dataList = null, $linkExistingTitle = 'Select Existing', $sortField = null) {
+	public function __construct($name, $title = null, SS_List $dataList = null, $linkExistingTitle = null, $sortField = null) {
 		$config = GridfieldConfig::create()->addComponents(
 			new GridFieldButtonRow('before'),
 			new GridFieldToolbarHeader(),
@@ -27,6 +27,13 @@ class PickerField extends GridField {
 		if($sortField)
 		{
 			$config->addComponent(new GridFieldOrderableRows($sortField));
+		}
+		
+		if(!$linkExistingTitle)
+		{
+			$linkExistingTitle = ($this->isHaveOne()) ? 
+				'Select a ' . $dataList->dataClass() :		// singular [has_one]
+				'Select ' . $dataList->dataClass() . '(s)';	// plural [has_many, many_many]
 		}
 		
 		$config->getComponentByType('PickerFieldAddExistingSearchButton')->setTitle($linkExistingTitle);
