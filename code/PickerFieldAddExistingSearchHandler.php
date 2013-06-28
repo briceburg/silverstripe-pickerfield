@@ -2,6 +2,12 @@
 
 class PickerFieldAddExistingSearchHandler extends GridFieldAddExistingSearchHandler {
 	
+	public static $allowed_actions = array(
+			'index',
+			'add',
+			'SearchForm'
+	);
+	
 	public function add($request) {
 		// use native GridFieldAddExistingSearchHandler add() method when not has_one
 		if(!$this->grid->isHaveOne()) { return parent::add($request); }
