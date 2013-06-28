@@ -19,9 +19,9 @@ class PickerField extends GridField {
 			new GridFieldToolbarHeader(),
 			new GridFieldDataColumns(),
 			new GridFieldTitleHeader(),
-			new GridFieldDeleteAction(true),
 			new GridFieldPaginator(),
-			new PickerFieldAddExistingSearchButton()
+			new PickerFieldAddExistingSearchButton(),
+			new PickerFieldDeleteAction()
 		);
 		
 		if($sortField)

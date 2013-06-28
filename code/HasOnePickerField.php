@@ -22,15 +22,12 @@ class HasOnePickerField extends PickerField {
 		
 		// convert the has_one relation getter to a DataList / SS_List
 		$dataList = $modelClass::get()->filter(array('ID' => $currentHasOne->ID));
-		
 
 		// construct the PickerField
 		parent::__construct($name, $title, $dataList, $linkExistingTitle);
-		
 		
 		// remove components non-applicable to has_one relationships
 		$this->getConfig()->removeComponentsByType('GridFieldPaginator');
 		
 	}
-	
 }
