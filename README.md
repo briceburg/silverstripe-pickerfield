@@ -73,7 +73,7 @@ $field = new PickerField('Owners', 'Owners', $this->Owners());
 $field = new HasOnePickerField($this, 'DamID', 'Selected Dam', $this->Dam(), 'Select a Dam');
 
 
-// example of search filtration to limit selection to a desired subset.
+// EXAMPLE of SEARCH FILTRATION to limit selection to a desired subset.
 ///////////////////////////////////////////////////////////////////////
 $fields->addFieldsToTab('Root.Pedigree', array(
 	$sireField = new HasOnePickerField($this, 'SireID', 'Selected Sire', $this->Sire(), 'Select a Sire'),
@@ -84,6 +84,16 @@ $fields->addFieldsToTab('Root.Pedigree', array(
 $damField->setSearchFilters(array('Gender' => 'female'));
 $sireField->setSearchFilters(array('Gender' => 'male'));
 ///////////////////////////////////////////////////////////////////////
+
+
+// EXAMPLE of ADDING EDIT capability to the selected object(s)
+///////////////////////////////////////////////////////////////////////
+$fields->addFieldsToTab('Root.Main', array(
+    $field = new HasOnePickerField($this, 'Author', 'Author', $this->Author())
+));
+$field->getConfig()->addComponents(new GridFieldDetailForm(),new GridFieldEditButton());
+///////////////////////////////////////////////////////////////////////
+
 
 ```
 
