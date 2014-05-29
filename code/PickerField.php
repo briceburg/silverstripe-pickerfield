@@ -69,4 +69,35 @@ class PickerField extends GridField {
 			->getSearchExcludes();
 	}
 	
+	
+	public function enableCreate($button_title = null) {
+	    $this->addDetailForm();
+	     
+	    $button = new GridFieldAddNewButton();
+	    if($button_title) $button->setButtonName($button_title);
+	     
+	    $this->config->addComponent($button);
+	    
+	    return $this; 
+	}
+	
+	public function enableEdit() {
+	    $this->addDetailForm();
+	    
+	    $this->config->addComponent(new GridFieldEditButton());
+	     
+	    return $this;
+	}
+	
+	private function addDetailForm(){
+	     
+	    if($this->config->getComponentByType('GridFieldDetailForm'))
+	        return;
+	     
+	    $form = new GridFieldDetailForm();
+	    $form->setItemRequestClass('PickerFieldEditHandler');
+	     
+	     
+	    return $this->config->addComponent($form);
+	}
 }
