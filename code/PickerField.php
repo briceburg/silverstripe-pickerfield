@@ -89,6 +89,11 @@ class PickerField extends GridField {
 	    return $this;
 	}
 	
+	
+	public function setSelectTitle($title) {
+	    $config->getComponentByType('PickerFieldAddExistingSearchButton')->setTitle($title);
+	}
+	
 	private function addDetailForm(){
 	     
 	    if($this->config->getComponentByType('GridFieldDetailForm'))
