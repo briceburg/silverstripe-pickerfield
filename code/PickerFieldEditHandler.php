@@ -63,12 +63,7 @@ class PickerFieldEditHandler extends GridFieldDetailForm_ItemRequest {
 	    }
 	    
 	    
-	    // go back
-	    $controller = Controller::curr();
-	    $noActionURL = $controller->removeAction($data['url']);
-	    $controller->getRequest()->addHeader('X-Pjax', 'Content');
-	    return $controller->redirect($noActionURL, 302);
-
+	    return $this->edit(Controller::curr()->getRequest());
 	}
 
 		
