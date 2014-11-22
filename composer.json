@@ -15,6 +15,7 @@
 		"issues": "https://github.com/briceburg/silverstripe-pickerfield/issues"
 	},
 	"require": {
+	  "silverstripe/framework": "~3.0",
 		"ajshort/silverstripe-gridfieldextensions": "*"
 	},
 	"extra": {
