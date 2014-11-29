@@ -16,7 +16,7 @@
 	},
 	"require": {
 	  "silverstripe/framework": "~3.0",
-		"ajshort/silverstripe-gridfieldextensions": "*"
+		"silverstripe-australia/gridfieldextensions": "*"
 	},
 	"extra": {
 		"installer-name": "pickerfield",
