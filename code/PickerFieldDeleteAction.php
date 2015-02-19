@@ -16,7 +16,7 @@ class PickerFieldDeleteAction extends GridFieldDeleteAction {
 		$gridField->childObject->$childProperty = 0;
 		$gridField->childObject->write();
 		
-		$gridField->setList(null);
+		$gridField->setList(ArrayList::create());
 	}
 	
 	
