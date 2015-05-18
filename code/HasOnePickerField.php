@@ -16,9 +16,14 @@ class HasOnePickerField extends PickerField {
 	 */
 	
 	public function __construct(DataObject $childObject, $name, $title = null, Object $currentHasOne, $linkExistingTitle = null, $searchContext = null) {
-		$modelClass = $currentHasOne->className;
-		$this->childObject = $childObject;
+		
+		$modelClass = $childObject->getRelationClass(str_replace('ID', '', $name));
+		if(!$modelClass) {
+			$modelClass = $currentHasOne->className;
+		}
+
 		$this->setModelClass($modelClass);
+		$this->childObject = $childObject;
 		
 		// convert the has_one relation getter to a DataList / SS_List
 		$dataList = $modelClass::get()->filter(array('ID' => $currentHasOne->ID));
