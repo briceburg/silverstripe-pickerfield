@@ -23,7 +23,7 @@ class PickerFieldAddExistingSearchHandler extends GridFieldAddExistingSearchHand
 	}
 	
 	public function doSearch($data, $form) {
-		$list = $this->context->getResults($data);
+		$list = $this->context->getQuery($data, false, false, $this->getSearchList());
 		$list = $this->applySearchFilters($list);
 		$list = $list->subtract($this->grid->getList());
 		$list = new PaginatedList($list, $this->request);
@@ -37,12 +37,18 @@ class PickerFieldAddExistingSearchHandler extends GridFieldAddExistingSearchHand
 	
 	
 	public function Items() {
-		$list = DataList::create($this->grid->getList()->dataClass());
+		$list = $this->getSearchList();
 		$list = $this->applySearchFilters($list);
 		$list = $list->subtract($this->grid->getList());
 		$list = new PaginatedList($list, $this->request);
 
 		return $list;
+	}
+
+	public function getSearchList() {
+		$component	= $this->grid->getConfig()->getComponentByType('PickerFieldAddExistingSearchButton');
+
+		return $component->getSearchList() ?: DataList::create($this->grid->getList()->dataClass());
 	}
 	
 	public function applySearchFilters($list){
