@@ -58,7 +58,18 @@ class PickerField extends GridField {
 		
 		return $this;
 	}
-	
+
+	/**
+	 * @param SS_List $list List to search on
+	 * @return $this
+	 */
+	public function setSearchList(SS_List $list) {
+		$this->config->getComponentByType('PickerFieldAddExistingSearchButton')
+			->setSearchList($list);
+
+		return $this;
+	}
+
 	public function getSearchFilters() {
 		return $this->config->getComponentByType('PickerFieldAddExistingSearchButton')
 			->getSearchFilters();
@@ -68,7 +79,14 @@ class PickerField extends GridField {
 		return $this->config->getComponentByType('PickerFieldAddExistingSearchButton')
 			->getSearchExcludes();
 	}
-	
+
+	/**
+	 * @return SS_List
+	 */
+	public function getSearchLIst() {
+		return $this->config->getComponentByType('PickerFieldAddExistingSearchButton')
+			->getSearchList();
+	}
 	
 	public function enableCreate($button_title = null) {
 	    $this->addDetailForm();
