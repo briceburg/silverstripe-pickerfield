@@ -1,21 +1,24 @@
 <?php
 
+use SilverStripe\GridFieldExtensions\GridFieldAddExistingSearchButton;
+use SilverStripe\ORM\SS_List;
+
 class PickerFieldAddExistingSearchButton extends GridFieldAddExistingSearchButton
 {
     protected $searchFilters    = null;
     protected $searchExcludes    = null;
     protected $searchList        = null;
-    
+
     public function handleSearch($grid, $request)
     {
         return new PickerFieldAddExistingSearchHandler($grid, $this);
     }
-    
+
     public function setSearchFilters($filters)
     {
         $this->searchFilters = $filters;
     }
-    
+
     public function setSearchExcludes($excludes)
     {
         $this->searchExcludes = $excludes;
@@ -29,12 +32,12 @@ class PickerFieldAddExistingSearchButton extends GridFieldAddExistingSearchButto
     {
         $this->searchList = $list;
     }
-    
+
     public function getSearchFilters()
     {
         return $this->searchFilters;
     }
-    
+
     public function getSearchExcludes()
     {
         return $this->searchExcludes;

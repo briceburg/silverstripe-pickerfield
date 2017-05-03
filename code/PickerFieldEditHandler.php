@@ -1,6 +1,10 @@
 <?php
+
+use SilverStripe\Forms\GridField\GridFieldDetailForm_ItemRequest;
+
 /**
- * A custom grid field request handler that allows interacting with form fields when adding records.
+ * A custom grid field request handler that allows interacting with form fields
+ * when adding records.
  */
 class PickerFieldEditHandler extends GridFieldDetailForm_ItemRequest
 {
