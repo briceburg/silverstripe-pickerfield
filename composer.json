@@ -15,7 +15,7 @@
 		"issues": "https://github.com/briceburg/silverstripe-pickerfield/issues"
 	},
 	"require": {
-	  "silverstripe/framework": "~3.0",
+	  "silverstripe/framework": ">=4.0",
 		"silverstripe-australia/gridfieldextensions": "*"
 	},
 	"extra": {
