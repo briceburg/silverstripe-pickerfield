@@ -6,7 +6,7 @@ use SilverStripe\ORM\DataList;
 
 class PickerFieldAddExistingSearchHandler extends GridFieldAddExistingSearchHandler
 {
-    public static $allowed_actions = array(
+    private static $allowed_actions = array(
         'index',
         'add',
         'SearchForm'
