@@ -1,12 +1,15 @@
 <?php
 
 use SilverStripe\ORM\DataObject;
+use SilverStripe\Forms\ReadonlyField;
 
 class HasOnePickerField extends PickerField
 {
     protected $isHaveOne = true;
 
     protected $childObject;
+
+    protected $currentHasOne;
 
     /**
      * Usage [e.g. in getCMSFields]
@@ -28,6 +31,7 @@ class HasOnePickerField extends PickerField
 
         $this->setModelClass($modelClass);
         $this->childObject = $childObject;
+        $this->currentHasOne = $currentHasOne;
 
         // convert the has_one relation getter to a DataList / SS_List
         $dataList = $modelClass::get()->filter(array('ID' => $currentHasOne->ID));
@@ -37,5 +41,53 @@ class HasOnePickerField extends PickerField
 
         // remove components non-applicable to has_one relationships
         $this->getConfig()->removeComponentsByType('GridFieldPaginator');
+    }
+
+
+    /**
+     * Returns a read-only version of this field.
+     *
+     * @return FormField
+     */
+    public function performReadonlyTransformation()
+    {
+        $clone = $this->castedCopy(HasOnePickerField_Readonly::class);
+        $clone->setPicker($this);
+
+        return $clone;
+    }
+
+    public function getCurrentHasOne()
+    {
+        return $this->currentHasOne;
+    }
+}
+
+class HasOnePickerField_Readonly extends ReadonlyField
+{
+    protected $picker;
+
+    private static $casting = [
+        'Message' => 'Text'
+    ];
+
+    public function setPicker($picker)
+    {
+        $this->picker = $picker;
+    }
+
+    public function setValue($value, $data = NULL)
+    {
+        if ($this->picker) {
+            if ($one = $this->picker->getCurrentHasOne()) {
+                if ($one->exists()) {
+                    $value = ($one = $this->picker->getCurrentHasOne()) ? $one->Title : 'Not-set';
+
+                    parent::setValue($value, $data);
+                }
+            }
+        }
+
+        return $this;
     }
 }
