@@ -1,6 +1,6 @@
 <?php
 
-use SilverStripe\GridFieldExtensions\GridFieldAddExistingSearchButton;
+use Symbiote\GridFieldExtensions\GridFieldAddExistingSearchButton;
 use SilverStripe\ORM\SS_List;
 
 class PickerFieldAddExistingSearchButton extends GridFieldAddExistingSearchButton
