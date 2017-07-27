@@ -5,8 +5,8 @@ use SilverStripe\Forms\GridField\GridFieldConfig;
 use SilverStripe\Forms\GridField\GridFieldButtonRow;
 use SilverStripe\Forms\GridField\GridFieldToolbarHeader;
 use SilverStripe\Forms\GridField\GridFieldDataColumns;
-use SilverStripe\GridFieldExtensions\GridFieldTitleHeader;
 use SilverStripe\Forms\GridField\GridFieldPaginator;
+use Symbiote\GridFieldExtensions\GridFieldTitleHeader;
 
 use SilverStripe\ORM\SS_List;
 
