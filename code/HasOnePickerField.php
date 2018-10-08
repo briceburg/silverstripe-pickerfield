@@ -2,6 +2,7 @@
 
 use SilverStripe\ORM\DataObject;
 use SilverStripe\Forms\ReadonlyField;
+use SilverStripe\ORM\FieldType\DBField;
 
 class HasOnePickerField extends PickerField
 {
@@ -51,8 +52,10 @@ class HasOnePickerField extends PickerField
      */
     public function performReadonlyTransformation()
     {
-        $clone = $this->castedCopy(HasOnePickerField_Readonly::class);
-        $clone->setPicker($this);
+        $readonly = HasOnePickerField_Readonly::create($this->name);
+        $readonly->setPicker($this);
+
+        $clone = $this->castedCopy($readonly);
 
         return $clone;
     }
@@ -68,7 +71,7 @@ class HasOnePickerField_Readonly extends ReadonlyField
     protected $picker;
 
     private static $casting = [
-        'Message' => 'Text'
+        'Message' => 'HTMLText'
     ];
 
     public function setPicker($picker)
@@ -82,6 +85,12 @@ class HasOnePickerField_Readonly extends ReadonlyField
             if ($one = $this->picker->getCurrentHasOne()) {
                 if ($one->exists()) {
                     $value = ($one = $this->picker->getCurrentHasOne()) ? $one->Title : 'Not-set';
+
+                    if ($one->hasMethod('CMSEditLink')) {
+                        $value = DBField::create_field('HTMLText',
+                            sprintf('<a href="%s">%s</a>', $one->CMSEditLink(), $one->Title)
+                        );
+                    }
 
                     parent::setValue($value, $data);
                 }
