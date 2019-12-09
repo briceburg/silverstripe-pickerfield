@@ -1,7 +1,7 @@
 {
 	"name": "briceburg/silverstripe-pickerfield",
 	"description": "GridField based management of has_one , has_many , and many_many relationship selection",
-	"type": "silverstripe-module",
+	"type": "silverstripe-vendormodule",
 	"homepage": "https://github.com/briceburg/silverstripe-pickerfield",
 	"keywords": ["silverstripe", "gridfield", "has_one"],
 	"license": "BSD-3-Clause",
@@ -17,9 +17,13 @@
 	"require": {
 	  "silverstripe/framework": ">=4.0",
 		"silverstripe-australia/gridfieldextensions": "*"
-	},
+    },
+    "autoload": {
+        "psr-0": {
+            "Briceburg\\PickerField\\": "src/"
+        }
+    },
 	"extra": {
-		"installer-name": "pickerfield",
 		"screenshots": [
 			"docs/screenshots/pickerfield.png",
 			"docs/screenshots/add-existing-search.png"

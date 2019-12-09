@@ -1,5 +1,7 @@
 <?php
 
+namespace Briceburg\PickerField;
+
 use SilverStripe\Forms\GridField\GridFieldDetailForm_ItemRequest;
 
 /**

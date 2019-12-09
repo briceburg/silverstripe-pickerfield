@@ -1,5 +1,7 @@
 <?php
 
+namespace Briceburg\PickerField;
+
 use Symbiote\GridFieldExtensions\GridFieldAddExistingSearchHandler;
 use SilverStripe\ORM\PaginatedList;
 use SilverStripe\ORM\DataList;

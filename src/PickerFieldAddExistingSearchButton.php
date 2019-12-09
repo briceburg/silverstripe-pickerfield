@@ -1,5 +1,7 @@
 <?php
 
+namespace Briceburg\PickerField;
+
 use Symbiote\GridFieldExtensions\GridFieldAddExistingSearchButton;
 use SilverStripe\ORM\SS_List;
 

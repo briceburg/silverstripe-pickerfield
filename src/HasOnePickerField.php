@@ -1,5 +1,7 @@
 <?php
 
+namespace Briceburg\PickerField;
+
 use SilverStripe\ORM\DataObject;
 use SilverStripe\Forms\ReadonlyField;
 use SilverStripe\ORM\FieldType\DBField;
