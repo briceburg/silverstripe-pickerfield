@@ -58,14 +58,14 @@ class PickerFieldAddExistingSearchHandler extends GridFieldAddExistingSearchHand
 
     public function getSearchList()
     {
-        $component = $this->grid->getConfig()->getComponentByType('PickerFieldAddExistingSearchButton');
+        $component = $this->grid->getConfig()->getComponentByType(PickerFieldAddExistingSearchButton::class);
 
         return $component->getSearchList() ?: DataList::create($this->grid->getList()->dataClass());
     }
 
     public function applySearchFilters($list)
     {
-        $component = $this->grid->getConfig()->getComponentByType('PickerFieldAddExistingSearchButton');
+        $component = $this->grid->getConfig()->getComponentByType(PickerFieldAddExistingSearchButton::class);
 
         if ($filters = $component->getSearchFilters()) {
             $list = $list->filter($filters);

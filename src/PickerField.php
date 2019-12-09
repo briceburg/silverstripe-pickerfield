@@ -3,6 +3,7 @@
 namespace Briceburg\PickerField;
 
 use SilverStripe\Forms\GridField\GridField;
+use SilverStripe\Forms\GridField\GridFieldAddNewButton;
 use SilverStripe\Forms\GridField\GridFieldConfig;
 use SilverStripe\Forms\GridField\GridFieldButtonRow;
 use SilverStripe\Forms\GridField\GridFieldToolbarHeader;
@@ -51,7 +52,7 @@ class PickerField extends GridField
                 'Select ' . $dataList->dataClass() . '(s)';    // plural [has_many, many_many]
         }
 
-        $config->getComponentByType('PickerFieldAddExistingSearchButton')->setTitle($linkExistingTitle);
+        $config->getComponentByType(PickerFieldAddExistingSearchButton::class)->setTitle($linkExistingTitle);
 
         return parent::__construct($name, $title, $dataList, $config);
     }
@@ -61,9 +62,17 @@ class PickerField extends GridField
         return $this->isHaveOne;
     }
 
+    public function setDisplayFields($fields)
+    {
+        $this->config->getComponentByType(GridFieldDataColumns::class)
+            ->setDisplayFields($fields);
+
+        return $this;
+    }
+
     public function setSearchFilters($filters)
     {
-        $this->config->getComponentByType('PickerFieldAddExistingSearchButton')
+        $this->config->getComponentByType(PickerFieldAddExistingSearchButton::class)
             ->setSearchFilters($filters);
 
         return $this;
@@ -71,7 +80,7 @@ class PickerField extends GridField
 
     public function setSearchExcludes($excludes)
     {
-        $this->config->getComponentByType('PickerFieldAddExistingSearchButton')
+        $this->config->getComponentByType(PickerFieldAddExistingSearchButton::class)
             ->setSearchExcludes($excludes);
 
         return $this;
@@ -83,7 +92,7 @@ class PickerField extends GridField
      */
     public function setSearchList(SS_List $list)
     {
-        $this->config->getComponentByType('PickerFieldAddExistingSearchButton')
+        $this->config->getComponentByType(PickerFieldAddExistingSearchButton::class)
             ->setSearchList($list);
 
         return $this;
@@ -91,22 +100,22 @@ class PickerField extends GridField
 
     public function getSearchFilters()
     {
-        return $this->config->getComponentByType('PickerFieldAddExistingSearchButton')
+        return $this->config->getComponentByType(PickerFieldAddExistingSearchButton::class)
             ->getSearchFilters();
     }
 
     public function getSearchExcludes()
     {
-        return $this->config->getComponentByType('PickerFieldAddExistingSearchButton')
+        return $this->config->getComponentByType(PickerFieldAddExistingSearchButton::class)
             ->getSearchExcludes();
     }
 
     /**
      * @return SS_List
      */
-    public function getSearchLIst()
+    public function getSearchList()
     {
-        return $this->config->getComponentByType('PickerFieldAddExistingSearchButton')
+        return $this->config->getComponentByType(PickerFieldAddExistingSearchButton::class)
             ->getSearchList();
     }
 
@@ -136,7 +145,7 @@ class PickerField extends GridField
 
     public function setSelectTitle($title)
     {
-        $this->config->getComponentByType('PickerFieldAddExistingSearchButton')->setTitle($title);
+        $this->config->getComponentByType(PickerFieldAddExistingSearchButton::class)->setTitle($title);
 
         return $this;
     }
