@@ -2,7 +2,11 @@
 
 namespace Briceburg\PickerField;
 
+use SilverStripe\Control\Controller;
+use SilverStripe\Control\PjaxResponseNegotiator;
 use SilverStripe\Forms\GridField\GridFieldDetailForm_ItemRequest;
+use SilverStripe\ORM\ManyManyList;
+use SilverStripe\ORM\ValidationException;
 
 /**
  * A custom grid field request handler that allows interacting with form fields
@@ -12,12 +16,11 @@ class PickerFieldEditHandler extends GridFieldDetailForm_ItemRequest
 {
     public function doSave($data, $form)
     {
-
         /**
          * modelled after doSave method on GridFieldDetailForm_ItemRequest
          */
         if (!$this->record->canEdit()) {
-            return $controller->httpError(403);
+            return $this->controller->httpError(403);
         }
 
         if (isset($data['ClassName']) && $data['ClassName'] != $this->record->ClassName) {
@@ -34,7 +37,7 @@ class PickerFieldEditHandler extends GridFieldDetailForm_ItemRequest
             $form->saveInto($this->record);
             $this->record->write();
         } catch (ValidationException $e) {
-            $form->sessionMessage($e->getResult()->message(), 'bad');
+            $form->sessionMessage($e->getResult()->getMessages(), 'bad');
             $responseNegotiator = new PjaxResponseNegotiator(array(
                 'CurrentForm' => function () use (&$form) {
                     return $form->forTemplate();
@@ -43,10 +46,10 @@ class PickerFieldEditHandler extends GridFieldDetailForm_ItemRequest
                     return $controller->redirectBack();
                 }
             ));
-            if ($controller->getRequest()->isAjax()) {
-                $controller->getRequest()->addHeader('X-Pjax', 'CurrentForm');
+            if ($this->controller->getRequest()->isAjax()) {
+                $this->controller->getRequest()->addHeader('X-Pjax', 'CurrentForm');
             }
-            return $responseNegotiator->respond($controller->getRequest());
+            return $responseNegotiator->respond($this->controller->getRequest());
         }
 
 
@@ -63,7 +66,6 @@ class PickerFieldEditHandler extends GridFieldDetailForm_ItemRequest
             $extraData = $this->getExtraSavedData($this->record, $list);
             $list->add($this->record, $extraData);
         }
-
 
         return $this->edit(Controller::curr()->getRequest());
     }
