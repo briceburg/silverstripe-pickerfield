@@ -25,7 +25,7 @@ class HasOnePickerField extends PickerField
      * @param string $linkExistingTitle - AddExisting Button Title
      */
 
-    public function __construct(DataObject $childObject, $name, $title = null, $currentHasOne, $linkExistingTitle = null, $searchContext = null)
+    public function __construct(DataObject $childObject, $name, $title, $currentHasOne, $linkExistingTitle = null, $searchContext = null)
     {
         $modelClass = $childObject->getRelationClass(str_replace('ID', '', $name));
         if (!$modelClass) {
